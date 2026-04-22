@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Store Checker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M3 20.5v-17c0-.83 1-.83 1.5-.5L20 12 4.5 21c-.5.33-1.5.33-1.5-.5z" fill="white"/>
+      </svg>
+      <span>Play Store Checker</span>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" data-tab="check">New Check</button>
+      <button class="nav-btn" data-tab="history">History</button>
+    </nav>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ── New Check ── -->
+  <section id="tab-check" class="tab">
+
+    <div class="card check-form">
+      <h2>Check App</h2>
+      <p class="subtitle">Scans <strong>76 countries</strong> (gl=) and <strong>47 languages</strong> (hl=) separately, groups by unique app name.</p>
+
+      <label class="field-label">App URL</label>
+      <div class="input-row">
+        <input id="app-url" type="url"
+               placeholder="https://play.google.com/store/apps/details?id=…" />
+        <button id="btn-check-app" class="btn-primary">Check App</button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <label class="field-label">Developer Page URL</label>
+      <div class="input-row">
+        <input id="dev-url" type="url"
+               placeholder="https://play.google.com/store/apps/developer?id=…" />
+        <button id="btn-check-dev" class="btn-secondary">Check Developer</button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div id="progress-card" class="card hidden">
+      <div class="progress-header">
+        <div>
+          <h3 id="progress-phase">Checking…</h3>
+          <p id="progress-msg" class="progress-msg"></p>
+        </div>
+        <div class="progress-right">
+          <span id="progress-counter" class="progress-counter">0 / 0</span>
+          <button id="btn-cancel" class="btn-cancel">Cancel</button>
+        </div>
+      </div>
+      <!-- Phase bars -->
+      <div class="phase-bars">
+        <div class="phase-row">
+          <span class="phase-label">Countries (76)</span>
+          <div class="progress-track"><div id="bar-country" class="progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="phase-row">
+          <span class="phase-label">Languages (47)</span>
+          <div class="progress-track"><div id="bar-lang" class="progress-fill lang-bar" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results-section" class="hidden">
+      <div class="results-header">
+        <h2 id="results-title">Results</h2>
+        <button id="btn-new-check" class="btn-icon">← New check</button>
+      </div>
+      <div id="results-list"></div>
+    </div>
+
+  </section>
+
+  <!-- ── History ── -->
+  <section id="tab-history" class="tab hidden">
+    <div class="history-header">
+      <h2>Checked Apps</h2>
+      <button id="btn-refresh" class="btn-icon">↻ Refresh</button>
+    </div>
+    <div id="history-list"></div>
+  </section>
+
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox hidden">
+  <div class="lightbox-backdrop"></div>
+  <div class="lightbox-wrap">
+    <button class="lightbox-close">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+</div>
+
+<!-- App detail modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
